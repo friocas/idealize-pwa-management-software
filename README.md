@@ -4,7 +4,7 @@ This project is built using **React** with **Vite** for fast development and pro
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (CMD Only)
 
 **After Cloning this repository:**
 ```
