@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InstallPWA from '../components/InstallPWA';
 
+
 export default function Home() {
   const menuItems = [
     {
