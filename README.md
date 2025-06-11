@@ -16,13 +16,14 @@ npm install
 npm run dev
 ```
 
-##🔨 Building for Production:
+**🔨 Building for Production:**
 ```
 npm run build
 npm run preview
 ```
 
-##📂 Project Structure
+**📂 Project Structure**
+```
 /
 ├── public/          # Static files (e.g., favicon, manifest)
 ├── src/            # React components, pages, assets
@@ -34,3 +35,4 @@ npm run preview
 ├── package.json    # Project scripts and dependencies
 ├── vite.config.js  # Vite configuration
 └── README.md       # This file
+```
