@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import InstallPWA from '../components/InstallPWA';
+import Nav from 'react-bootstrap/Nav';
 
 export default function NavigationBarComp({ children, props }) {
     const { isBackActive, pageName } = props || {};
@@ -17,6 +19,7 @@ export default function NavigationBarComp({ children, props }) {
                             <Image src={Logo} style={{ width: '3rem', height: '3rem' }} />{' '}
                             <span className="text-start fw-semibold">TERRA VIGILANTE</span>
                         </Navbar.Brand>
+                        <InstallPWA />
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
                             <div className="d-none d-md-block">

@@ -33,12 +33,6 @@ export default function InstallPWA() {
     };
 
     return (
-        isVisible && (
-            <div className="bg-white d-flex flex-column mt-4 mb-4">
-                <Button onClick={handleInstallClick} variant='dark'>
-                    Download App
-                </Button>
-            </div>
-        )
+        isVisible && (<Button onClick={handleInstallClick} variant='dark'>Download App</Button>)
     );
 };

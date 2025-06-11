@@ -7,7 +7,6 @@ import image3 from '../assets/imgs/colaboradores.png';
 import image4 from '../assets/imgs/framboesas.png';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import InstallPWA from '../components/InstallPWA';
 
 
 export default function Home() {
@@ -44,7 +43,6 @@ export default function Home() {
             </Col>
           ))}
         </Row>
-        <InstallPWA />
       </NavigationBarComp>
     </>
   );
