@@ -25,9 +25,9 @@ export default function TableComp({ props }) {
     return (
         <>
             {/* Desktop Table View */}
-            <div className="d-none d-md-block" style={{ maxHeight: '500px',maxWidth: '900px', margin: 'auto', overflowX: 'auto' }}>
+            <div className="d-none d-md-block"style={{ maxWidth: '900px', margin: 'auto',  overflowX: 'auto',maxHeight: '400px',overflowY: 'auto', }}>
                 <Table responsive="sm" striped bordered hover style={{ minWidth: '700px' }}>
-                    <thead className="table-dark">
+                    <thead className="table-dark" style={{  position: 'sticky', top: 0, zIndex: 10 }}>
                         <tr>
                             <th>#</th>
                             {headings.map((heading) => (
