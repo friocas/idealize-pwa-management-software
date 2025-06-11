@@ -11,7 +11,7 @@ This project is built using **React** with **Vite** for fast development and pro
 cd <project-folder>
 npm install
 ```
-**For local run use:**
+**ℹ️ For local run use:**
 ```
 npm run dev
 ```
