@@ -1,7 +1,5 @@
-import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ArrowLeftCircleFill, ArrowLeft, GearFill } from "react-bootstrap-icons";
 import Logo from '../assets/imgs/logo.png';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -21,9 +19,11 @@ export default function NavigationBarComp({ children, props }) {
                         </Navbar.Brand>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
-                            <Navbar.Text>
-                                Autenticado como:&nbsp;
-                            </Navbar.Text>
+                            <div className="d-none d-md-block">
+                                <Navbar.Text>
+                                    Autenticado como:&nbsp;
+                                </Navbar.Text>
+                            </div>
                             <NavDropdown title="Pedro Frias">
                                 <NavDropdown.Item href="/settings">Opções</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -45,7 +45,7 @@ export default function NavigationBarComp({ children, props }) {
                     </div>
                     {children}
                 </Container>
-                <footer className="mt-auto text-center ">
+                <footer className="mt-auto text-center pt-3">
                     <div className="bg-dark py-3">
                         <Container>
                             <span className="text-white">© 2025 Terra Vigilante</span>
