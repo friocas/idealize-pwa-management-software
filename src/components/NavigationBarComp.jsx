@@ -51,7 +51,7 @@ export default function NavigationBarComp({ children, props }) {
                 <footer className="mt-auto text-center pt-3">
                     <div className="bg-dark py-3">
                         <Container>
-                            <span className="text-white">© 2025 Terra Vigilante</span>
+                            <span className="text-white">© 2025 Idealize</span>
                         </Container>
                     </div>
                 </footer>
