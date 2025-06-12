@@ -6,12 +6,14 @@ import UnknownPage from './pages/UnknownPage';
 import PointPage from './pages/Point/PointPage';
 import SettingsPage from './pages/SettingsPage';
 import EmployeesPage from './pages/Employees/EmployeesPage';
+import HarvestManagementPage from './pages/HarvestManagement/HarvestManagementPage';
 
 export function Router() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/ponto" element={<PointPage />} />
+      <Route path="/colheita" element={<HarvestManagementPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/colaboradores" element={<EmployeesPage />} />
       <Route path="*" element={<UnknownPage />} /> {/* not found */}
