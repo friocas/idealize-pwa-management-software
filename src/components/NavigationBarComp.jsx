@@ -5,8 +5,10 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import InstallPWA from '../components/InstallPWA';
+import InstallPWAComp from './InstallPWAComp';
 import Nav from 'react-bootstrap/Nav';
+import { GearFill } from 'react-bootstrap-icons';
+import { NavLink } from 'react-bootstrap';
 
 export default function NavigationBarComp({ children, props }) {
     const { isBackActive, pageName } = props || {};
@@ -15,26 +17,17 @@ export default function NavigationBarComp({ children, props }) {
             <div className="min-vh-100 bg-white d-flex flex-column">
                 <Navbar className="bg-body-tertiary mb-4">
                     <Container>
-                        <Navbar.Brand href="/">
-                            <Image src={Logo} style={{ width: '3rem', height: '3rem' }} />{' '}
+                       <Navbar.Brand href="/">
+                            {/*<Image src={Logo} style={{ width: '3rem', height: '3rem' }} />{' '}*/}
                             <span className="text-start fw-semibold">TERRA VIGILANTE</span>
                         </Navbar.Brand>
-                        <InstallPWA />
-                        <Navbar.Toggle />
-                        <Navbar.Collapse className="justify-content-end">
-                            <div className="d-none d-md-block">
-                                <Navbar.Text>
-                                    Autenticado como:&nbsp;
-                                </Navbar.Text>
-                            </div>
-                            <NavDropdown title="Pedro Frias">
-                                <NavDropdown.Item href="/settings">Opções</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/logout">
-                                    Sair
-                                </NavDropdown.Item>
-                            </NavDropdown>
-                        </Navbar.Collapse>
+                        <InstallPWAComp />
+                        <div className="justify-content-end">
+                            <Nav className="me-auto">
+                                <Navbar.Text className='fs-5'>{new Date().toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' })}</Navbar.Text>
+                                <NavLink href="/settings" className="d-flex align-items-center"><GearFill className='fs-5' /></NavLink>
+                            </Nav>
+                        </div>
                     </Container>
                 </Navbar>
 
