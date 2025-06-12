@@ -73,7 +73,7 @@ export default function SettingsPage() {
           <Modal.Body>
             {quintas.map((q, index) => (
               <div key={index} className="d-flex justify-content-between mb-2">
-                <Form.Check type='radio' />
+                <Form.Check type='radio' name="selectedQuinta" checked={selectedQuinta === q} onChange={() => setSelectedQuinta(q)} />
                 <span>{q}</span>
                 <div>
                   <Button variant="outline-primary" size="sm" onClick={() => setNewQuinta(q)}>Editar</Button>{' '}
@@ -89,7 +89,7 @@ export default function SettingsPage() {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={() => { setSelectedQuinta(newQuinta); setShowQuintaModal(false); }}>Selecionar Quinta</Button>
+            <Button variant="primary" onClick={() => { setSelectedQuinta(selectedQuinta); setShowQuintaModal(false); }}>Selecionar Quinta</Button>
           </Modal.Footer>
         </Modal>
 
