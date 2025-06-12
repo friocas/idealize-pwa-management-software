@@ -1,6 +1,7 @@
 import { Pencil, Trash, Eye } from 'react-bootstrap-icons';
 
 export const tableConfig = {
+  itemsPerPage: 10,
   columns: [
     { key: 'id', label: 'ID', type: 'int' },
     { key: 'title', label: 'Produto', type: 'string' },

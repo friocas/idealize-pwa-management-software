@@ -4,11 +4,16 @@ import Card from 'react-bootstrap/Card';
 import Pagination from 'react-bootstrap/Pagination';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { Pencil, Trash } from 'react-bootstrap-icons';
+import { useState } from 'react';
 
 export default function TableComp({ config, data }) {
   const columns = config.columns || [];
   const actions = config.actions || [];
+  const itemsPerPage = config.itemsPerPage || 10;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const handleAction = (action, item) => {
     if (typeof action.onClick === 'function') {
@@ -16,13 +21,55 @@ export default function TableComp({ config, data }) {
     }
   };
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentData = data.slice(startIndex, startIndex + itemsPerPage);
+
+  const paginationItems = [];
+  const pageLimit = 2;
+  const startPage = Math.max(1, currentPage - pageLimit);
+  const endPage = Math.min(totalPages, currentPage + pageLimit);
+
+  if (startPage > 1) {
+    paginationItems.push(
+      <Pagination.Item key={1} onClick={() => setCurrentPage(1)}>
+        1
+      </Pagination.Item>
+    );
+    if (startPage > 2) {
+      paginationItems.push(<Pagination.Ellipsis key="start-ellipsis" disabled />);
+    }
+  }
+
+  for (let number = startPage; number <= endPage; number++) {
+    paginationItems.push(
+      <Pagination.Item
+        key={number}
+        active={number === currentPage}
+        onClick={() => setCurrentPage(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      paginationItems.push(<Pagination.Ellipsis key="end-ellipsis" disabled />);
+    }
+    paginationItems.push(
+      <Pagination.Item key={totalPages} onClick={() => setCurrentPage(totalPages)}>
+        {totalPages}
+      </Pagination.Item>
+    );
+  }
+
   return (
     <>
       {/* Desktop Table View */}
       <div className="d-none d-md-block" style={{ maxWidth: '100vw', margin: 'auto', overflowX: 'auto', maxHeight: '90vh', overflowY: 'auto' }}>
-        <Table responsive="sm" striped bordered hover style={{ minWidth: '700px' }}>
+        <Table responsive="sm" striped bordered hover style={{ minWidth: '700px', textAlign: 'center' }}>
           <thead className="table-dark" style={{ position: 'sticky', top: 0, zIndex: 10 }}>
-            <tr className="text-center align-middle">
+            <tr>
               {columns.map((col) => (
                 <th key={col.key}>{col.label}</th>
               ))}
@@ -30,17 +77,17 @@ export default function TableComp({ config, data }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr key={item.id} >
+            {currentData.map((item) => (
+              <tr key={item.id}>
                 {columns.map((col) => (
-                  <td key={col.key} className="text-center align-middle">
+                  <td key={col.key} style={{ verticalAlign: 'middle' }}>
                     {typeof item[col.key] === 'object'
                       ? JSON.stringify(item[col.key])
                       : item[col.key]}
                   </td>
                 ))}
                 {actions.length > 0 && (
-                  <td className="text-center align-middle">
+                  <td style={{ verticalAlign: 'middle' }}>
                     <ButtonGroup>
                       {actions.map((action, index) => (
                         <Button
@@ -64,7 +111,7 @@ export default function TableComp({ config, data }) {
       {/* Mobile Card View */}
       <div className="d-md-none">
         <div className="row g-3">
-          {data.map((item) => (
+          {currentData.map((item) => (
             <div key={item.id} className="col-12">
               <Card className="mb-3">
                 <Card.Header className="bg-dark text-white d-flex justify-content-between align-items-center">
@@ -98,13 +145,17 @@ export default function TableComp({ config, data }) {
         </div>
       </div>
 
-      {/* Pagination (placeholder) */}
+      {/* Pagination */}
       <Pagination className="d-flex align-items-center justify-content-center mt-4 pagination-dark">
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Item active>{2}</Pagination.Item>
-        <Pagination.Item>{3}</Pagination.Item>
-        <Pagination.Next />
+        <Pagination.Prev
+          onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+          disabled={currentPage === 1}
+        />
+        {paginationItems}
+        <Pagination.Next
+          onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+          disabled={currentPage === totalPages}
+        />
       </Pagination>
     </>
   );
