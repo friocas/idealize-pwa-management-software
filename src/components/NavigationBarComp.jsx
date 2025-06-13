@@ -23,6 +23,8 @@ export default function NavigationBarComp({ children, props }) {
     return () => clearInterval(interval);
   }, [displayTime]);
 
+  const projetName = import.meta.env.VITE_PRODUCT_SHORT_NAME;
+
   return (
     <>
       <div className="min-vh-100 bg-white d-flex flex-column">
@@ -30,7 +32,7 @@ export default function NavigationBarComp({ children, props }) {
           <Container>
             <Navbar.Brand href="/">
               {/*<Image src={Logo} style={{ width: '3rem', height: '3rem' }} />{' '}*/}
-              <span className="text-start fw-semibold">TERRA VIGILANTE</span>
+              <span className="text-start fw-semibold">{projetName}</span>
             </Navbar.Brand>
             <InstallPWAComp />
             <div className="justify-content-end">
