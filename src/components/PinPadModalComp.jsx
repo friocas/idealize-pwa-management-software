@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { ArrowClockwise, BackspaceFill, CheckCircleFill } from "react-bootstrap-icons";
 
-export default function PinPadModalComp({ show, onClose, onSubmit }) {
+export default function PinPadModalComp({ show, onClose, onSubmit, title }) {
   const [pin, setPin] = useState("");
+  const modalTitle = title || "Introduzir PIN";
 
   const handlePress = (value) => {
     if (pin.length < 6) setPin((prev) => prev + value);
@@ -26,7 +27,7 @@ export default function PinPadModalComp({ show, onClose, onSubmit }) {
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Introduzir PIN</Modal.Title>
+        <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="text-center">
         <input type="password" value={pin} readOnly className="form-control text-center mb-3 " placeholder="PIN" />

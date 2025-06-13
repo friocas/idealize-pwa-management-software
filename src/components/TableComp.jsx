@@ -5,6 +5,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useState } from 'react';
+import '../assets/css/custom.css';
 
 export default function TableComp({ config, data }) {
   const columns = config.columns || [];

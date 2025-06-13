@@ -13,3 +13,15 @@
     color: #212529 !important;
     background-color: #f8f9fa !important;
 }
+
+.page-item.active .page-link {
+  color: #fff !important;
+  background: rgb(48, 48, 48) !important;
+  border-color: #212529 !important;
+  box-shadow: none !important;
+}
+.page-link {
+  color: #212529 !important;
+  background-color: white !important;
+  border: 1px solid #212529 !important;
+}

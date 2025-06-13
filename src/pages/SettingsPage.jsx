@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal, Button, Form, Col, Row } from "react-bootstrap";
+import { Modal, Button, Form, Col, Row, ButtonGroup } from "react-bootstrap";
 import NavigationBarComp from "../components/NavigationBarComp";
 import PinPadModalComp from "../components/PinPadModalComp";
 import Card from "react-bootstrap/Card";
@@ -12,6 +12,7 @@ import quintasImage from "../assets/imgs/quintas.png";
 export default function SettingsPage() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordType, setPasswordType] = useState(""); // 'admin' or 'capataz'
+  const [pinPadModalTitle, setPinPadModalTitle] = useState("");
 
   const [showQuintaModal, setShowQuintaModal] = useState(false);
   const [quintas, setQuintas] = useState(["Quinta A", "Quinta B"]);
@@ -21,6 +22,7 @@ export default function SettingsPage() {
   // Open numeric keypad modal for passwords
   const handleOpenPasswordModal = (type) => {
     setPasswordType(type);
+    setPinPadModalTitle(type === "admin" ? "Alterar Password Admin" : "Alterar Password Capataz");
     setShowPasswordModal(true);
   };
 
@@ -45,41 +47,38 @@ export default function SettingsPage() {
   const quintaModal = (
     <Modal show={showQuintaModal} onHide={() => setShowQuintaModal(false)} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Gerir Quintas</Modal.Title>
+        <Modal.Title>Gestor de Quintas</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {quintas.map((q, index) => (
-          <div key={index} className="d-flex justify-content-between mb-2">
-            <Form.Check type="radio" name="selectedQuinta" checked={selectedQuinta === q} onChange={() => setSelectedQuinta(q)} />
-            <span>{q}</span>
-            <div>
-              <Button variant="outline-primary" size="sm" onClick={() => setNewQuinta(q)}>
-                Editar
-              </Button>{" "}
-              <Button variant="outline-danger" size="sm" onClick={() => handleDeleteQuinta(index)}>
-                Eliminar
-              </Button>
+          <div key={index} className="row mb-2">
+            <div className="col-6">
+              <Form.Check inline type="radio" name="selectedQuinta" checked={selectedQuinta === q} onChange={() => setSelectedQuinta(q)} />
+              <span>{q}</span>
+            </div>
+            <div className="col-6">
+              <ButtonGroup className="w-100">
+                <Button variant="outline-primary" size="sm" onClick={() => setNewQuinta(q)}>
+                  Editar
+                </Button>
+                <Button variant="outline-danger" size="sm" onClick={() => handleDeleteQuinta(index)}>
+                  Eliminar
+                </Button>
+              </ButtonGroup>
             </div>
           </div>
         ))}
-        <div className="d-flex justify-content-between mb-2">
-          <Form.Control className="w-50" type="text" size="sm" placeholder="Nova quinta" value={newQuinta} onChange={(e) => setNewQuinta(e.target.value)} />
-          <div>
-            <Button variant="outline-success" size="sm" onClick={handleAddQuinta}>
-              Adicionar Quinta
-            </Button>
+        <div className="row mb-2">
+          <div className="col-6">
+            <Form.Control inline className="w-100" type="text" size="sm" placeholder="Nova quinta" value={newQuinta} onChange={(e) => setNewQuinta(e.target.value)} />
+          </div> 
+          <div className="col-6">
+            <Button className="w-100" variant="outline-success" size="sm" onClick={handleAddQuinta}>Adicionar Quinta</Button>
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          variant="primary"
-          onClick={() => {
-            setSelectedQuinta(selectedQuinta);
-            setShowQuintaModal(false);
-          }}>
-          Selecionar Quinta
-        </Button>
+        <Button variant="primary" onClick={() => { setSelectedQuinta(selectedQuinta); setShowQuintaModal(false);}}>Confirmar escolha</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -151,7 +150,7 @@ export default function SettingsPage() {
         {quintaModal}
 
         {/* Password PIN Pad Modal */}
-        <PinPadModalComp show={showPasswordModal} onClose={() => setShowPasswordModal(false)} onSubmit={handlePinSubmit} />
+        <PinPadModalComp show={showPasswordModal} onClose={() => setShowPasswordModal(false)} onSubmit={handlePinSubmit} title={pinPadModalTitle} />
       </div>
     </NavigationBarComp>
   );

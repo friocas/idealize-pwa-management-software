@@ -8,6 +8,7 @@ import SettingsPage from "./pages/SettingsPage";
 import EmployeesPage from "./pages/Employees/EmployeesPage";
 import HarvestManagementPage from "./pages/HarvestManagement/HarvestManagementPage";
 import ProtectedRouteComp from "./components/ProtectedRouteComp";
+import HarvestRecordPage from "./pages/HarvestRecord/HarvestRecordPage";
 
 export function Router() {
   return (
@@ -17,6 +18,7 @@ export function Router() {
       <Route path="/colheita" element={<ProtectedRouteComp><HarvestManagementPage /></ProtectedRouteComp>} />
       <Route path="/settings" element={<ProtectedRouteComp><SettingsPage /></ProtectedRouteComp>} />
       <Route path="/colaboradores" element={<ProtectedRouteComp><EmployeesPage /></ProtectedRouteComp>} />
+      <Route path="/registo-colheita" element={<HarvestRecordPage />} />
       <Route path="*" element={<UnknownPage />} /> {/* not found */}
     </Routes>
   );
