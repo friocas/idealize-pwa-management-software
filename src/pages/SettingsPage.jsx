@@ -43,7 +43,7 @@ export default function SettingsPage() {
   };
 
   const quintaModal = (
-    <Modal show={showQuintaModal} onHide={() => setShowQuintaModal(false)}>
+    <Modal show={showQuintaModal} onHide={() => setShowQuintaModal(false)} centered>
       <Modal.Header closeButton>
         <Modal.Title>Gerir Quintas</Modal.Title>
       </Modal.Header>
